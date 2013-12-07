@@ -169,7 +169,12 @@ public class ProjectToolbar extends Toolbar {
             return;
           }
           Project project = ode.getProjectManager().addProject(projectInfo);
+          Ode.getInstance().openYoungAndroidProjectInDesigner(project);
+          //if (onSuccessCommand != null) {
+            // onSuccessCommand.execute(project);
+          // }  
         }
+        
 
       };
 

@@ -143,7 +143,7 @@ public class NewUserGetStarted {
       
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
-      this.setExitButton(exitButton, this.browserWidth - 40, 0.8*this.browserHeight);
+      this.setExitButton(exitButton, this.browserWidth - 40, (int) 0.8*this.browserHeight);
       
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(190, 96);
