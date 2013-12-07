@@ -69,6 +69,7 @@ import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.StatusCodeException;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.DeckPanel;
@@ -948,118 +949,6 @@ public class Ode implements EntryPoint {
   }
 
   /**
-   * Creates, visually centers, and optionally displays the dialog box
-   * that informs the user how to start learning about using App Inventor
-   * or create a new project.
-   * @param showDialog Convenience variable to show the created DialogBox.
-   * @return The created and optionally displayed Dialog box.
-   */
-  public DialogBox createNoProjectsDialog(boolean showDialog) {
-    // Create the UI elements of the DialogBox
-    final DialogBox dialogBox = new DialogBox(true);
-    dialogBox.setStylePrimaryName("ode-DialogBox");
-    dialogBox.setText("Welcome to App Inventor!");
-
-    Grid mainGrid = new Grid(2, 2);
-    mainGrid.getCellFormatter().setAlignment(0,
-        0,
-        HasHorizontalAlignment.ALIGN_CENTER,
-        HasVerticalAlignment.ALIGN_MIDDLE);
-    mainGrid.getCellFormatter().setAlignment(0,
-        1,
-        HasHorizontalAlignment.ALIGN_CENTER,
-        HasVerticalAlignment.ALIGN_MIDDLE);
-    mainGrid.getCellFormatter().setAlignment(1,
-        1,
-        HasHorizontalAlignment.ALIGN_RIGHT,
-        HasVerticalAlignment.ALIGN_MIDDLE);
-
-    Image dialogImage = new Image(Ode.getImageBundle().androidGreenSmall());
-
-    Grid messageGrid = new Grid(2, 1);
-    messageGrid.getCellFormatter().setAlignment(0,
-        0,
-        HasHorizontalAlignment.ALIGN_JUSTIFY,
-        HasVerticalAlignment.ALIGN_MIDDLE);
-    messageGrid.getCellFormatter().setAlignment(1,
-        0,
-        HasHorizontalAlignment.ALIGN_LEFT,
-        HasVerticalAlignment.ALIGN_MIDDLE);
-
-    Label messageChunk1 = new Label("You don't have any projects yet."
-        + " To learn how to use App Inventor, click the \"Guide\" link"
-        + " at the upper right of the window; or to start your first project, click "
-        + " the \"New\" button at the upper left of the window.");
-    messageChunk1.setWidth("23em");
-    Label messageChunk2 = new Label("Happy Inventing!");
-
-    // Add the elements to the grids and DialogBox.
-    messageGrid.setWidget(0, 0, messageChunk1);
-    messageGrid.setWidget(1, 0, messageChunk2);
-    mainGrid.setWidget(0, 0, dialogImage);
-    mainGrid.setWidget(0, 1, messageGrid);
-
-    dialogBox.setWidget(mainGrid);
-    dialogBox.center();
-
-    if (showDialog) {
-      dialogBox.show();
-    }
-
-    return dialogBox;
-  }
-
-  /**
-   * Creates, visually centers, and optionally displays the dialog box
-   * that informs the user how to start learning about using App Inventor
-   * or create a new project.
-   * @param showDialog Convenience variable to show the created DialogBox.
-   * @return The created and optionally displayed Dialog box.
-   */
-  public DialogBox createWelcomeDialog(boolean showDialog) {
-    // Create the UI elements of the DialogBox
-    final DialogBox dialogBox = new DialogBox(false, true); // DialogBox(autohide, modal)
-    dialogBox.setStylePrimaryName("ode-DialogBox");
-    dialogBox.setText("Welcome to App Inventor!");
-    dialogBox.setHeight("400px");
-    dialogBox.setWidth("400px");
-    dialogBox.setGlassEnabled(true);
-    dialogBox.setAnimationEnabled(true);
-    dialogBox.center();
-    VerticalPanel DialogBoxContents = new VerticalPanel();
-    HTML message = new HTML("<h2>This is the Splash Screen. Make this an iframe to your splash screen.</h2>");
-    message.setStyleName("DialogBox-message");
-    SimplePanel holder = new SimplePanel();
-    Button ok = new Button("Continue");
-    ok.addClickListener(new ClickListener() {
-        public void onClick(Widget sender) {
-          dialogBox.hide();
-          getProjectService().getProjects(new AsyncCallback<long[]>() {
-              @Override
-              public void onSuccess(long [] projectIds) {
-                if (projectIds.length == 0) {
-                  createNoProjectsDialog(true);
-                }
-              }
-
-              @Override
-              public void onFailure(Throwable projectIds) {
-                OdeLog.elog("Could not get project list");
-              }
-            });
-        }
-      });
-    holder.add(ok);
-    DialogBoxContents.add(message);
-    DialogBoxContents.add(holder);
-    dialogBox.setWidget(DialogBoxContents);
-    if (showDialog) {
-      dialogBox.show();
-    }
-    return dialogBox;
-  }
-
-  /**
    * Show a Survey Splash Screen to the user if they have not previously
    * acknowledged it.
    */
@@ -1175,5 +1064,89 @@ public class Ode implements EntryPoint {
   private native void takeSurvey() /*-{
     $wnd.open("http://web.mit.edu");
   }-*/;
+
+  /**
+   * Creates, visually centers, and optionally displays the dialog box
+   * that informs the user how to start learning about using App Inventor
+   * or create a new project.
+   * @param showDialog Convenience variable to show the created DialogBox.
+   * @return The created and optionally displayed Dialog box.
+   */
+  public DialogBox createNoProjectsDialog(boolean showDialog) {
+    // Create the UI elements of the DialogBox
+    final DialogBox dialogBox = new DialogBox(true);
+    dialogBox.setStylePrimaryName("ode-DialogBox");
+    
+    Image newUserButton = new Image("images/getStarted/Screen1NewUserButton.png");
+    newUserButton.addClickListener(new ClickListener() {
+      public void onClick(Widget sender) {
+        dialogBox.hide();
+        //projectToolbar.getStarted();
+        ProjectToolbar.getStarted();
+      }
+    });
+  
+    Image existingUserButton = new Image("images/getStarted/Screen1ExistingUserButton.png");
+    existingUserButton.addClickListener(new ClickListener() {
+      public void onClick(Widget sender) {
+        dialogBox.hide();
+      }
+    });
+    
+    Image closeButton = new Image("images/getStarted/Components/0RedCloseButton.png");
+    closeButton.addClickListener(new ClickListener() {
+      public void onClick(Widget sender) {
+        dialogBox.hide();
+      }
+    });
+  
+    AbsolutePanel newUserWindow = new AbsolutePanel();
+    
+    Image backgroundImage = new Image("images/getStarted/Screen1Popup.png");
+    
+    newUserWindow.add(backgroundImage);
+    newUserWindow.add(newUserButton);
+    newUserWindow.add(existingUserButton);
+    newUserWindow.add(closeButton);
+    backgroundImage.setPixelSize(835, 470);
+    newUserButton.setPixelSize(225, 126);
+    existingUserButton.setPixelSize(225, 126);
+    closeButton.setPixelSize(30,30);
+    newUserWindow.setWidgetPosition(newUserButton, 160, 160);
+    newUserWindow.setWidgetPosition(existingUserButton, 450, 160);
+    newUserWindow.setWidgetPosition(closeButton, 805, 0);
+    
+    dialogBox.setWidget(newUserWindow);
+
+    if (showDialog) {
+      dialogBox.show();
+    }
+    return dialogBox;
+  }
+
+  /**
+   * Creates, visually centers, and optionally displays the dialog box
+   * that informs the user how to start learning about using App Inventor
+   * or create a new project.
+   * @param showDialog Convenience variable to show the created DialogBox.
+   * @return nothing
+   */
+  public void createWelcomeDialog(boolean showDialog) {
+    // Create the UI elements of the DialogBox
+    getProjectService().getProjects(new AsyncCallback<long[]>() {
+      @Override
+      public void onSuccess(long [] projectIds) {
+        if (projectIds.length == 0) {
+          createNoProjectsDialog(true);
+        }
+      }
+
+      @Override
+      public void onFailure(Throwable projectIds) {
+        OdeLog.elog("Could not get project list");
+      }
+    });
+  }
+
 
 }

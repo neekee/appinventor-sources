@@ -19,6 +19,14 @@ import com.google.appinventor.shared.rpc.project.UserProject;
 import com.google.appinventor.shared.rpc.project.youngandroid.YoungAndroidProjectNode;
 import com.google.common.collect.Lists;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -365,4 +373,32 @@ public class ProjectServiceImpl extends OdeRemoteServiceServlet implements Proje
     final String userId = userInfoProvider.getUserId();
     return getProjectRpcImpl(userId, projectId).addFile(userId, projectId, fileId);
   }
+
+  /**
+    * Creates a new project from a zip file that is already stored
+    *  on the server.
+    * @param projectName  name of new project
+    * @param pathToZip path the to template's zip file
+    *
+    * @return  a {@link UserProject} for new project
+    */
+  @Override
+  public UserProject newProjectFromTemplate(String projectName, String pathToZip) {
+  
+    //Window.alert("newProjectFromTemplate " + host + pathToZip);
+    //   System.out.println("newProjectFromTemplate = " +  host + pathToZip);
+    UserProject userProject = null;
+    try {
+      FileInputStream fis = new FileInputStream(pathToZip);
+      FileImporter fileImporter = new FileImporterImpl();
+      userProject = fileImporter.importProject(userInfoProvider.getUserId(), projectName, fis);
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (FileImporterException e) {
+      e.printStackTrace();
+    }
+  
+    return userProject;
+  }
+
 }

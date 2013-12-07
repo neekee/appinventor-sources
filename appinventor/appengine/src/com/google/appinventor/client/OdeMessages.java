@@ -890,6 +890,10 @@ public interface OdeMessages extends Messages {
   @Description("Label of the button for creating a new project")
   String newButton();
 
+  @DefaultMessage("Get Started")
+  @Description("Label of the button for getting started")
+  String getStartedButton();
+
   @DefaultMessage("Download Source")
   @Description("Label of the button for downloading source")
   String downloadSourceButton();

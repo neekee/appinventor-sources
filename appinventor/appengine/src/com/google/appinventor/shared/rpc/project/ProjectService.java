@@ -194,4 +194,13 @@ public interface ProjectService extends RemoteService {
    * @return modification date for project
    */
   long addFile(long projectId, String fileId);
+
+  /**
+   * Creates a new project from a zip file that is stored on the server.
+   * @param projectName name of new project
+   * @param pathToZip path to the zip files
+   *
+   *@return a {@link UserProject} for new project
+   */
+  UserProject newProjectFromTemplate(String projectName, String pathToZip);
 }
