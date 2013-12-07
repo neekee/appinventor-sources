@@ -144,22 +144,22 @@ public class ProjectToolbar extends Toolbar {
      GetStartedAction action = new GetStartedAction();
      action.execute();
   }
-  
+
   private static class GetStartedAction implements Command {
     @Override
     public void execute() {
-      
+
       final String projectName="GetStarted";
       // Callback for updating the project explorer after the project is created on the back-end
       final Ode ode = Ode.getInstance();
       final OdeAsyncCallback<UserProject> callback = new OdeAsyncCallback<UserProject>(
         // failure message
         MESSAGES.createProjectError()) {
+
         @Override
         public void onSuccess(UserProject projectInfo) {
           // Update project explorer -- i.e., display in project view
           if (projectInfo == null) {
-
             Window.alert("Unable to open get started project:" + projectName);
             ode.getProjectService().newProject(
               YoungAndroidProjectNode.YOUNG_ANDROID_PROJECT_TYPE,
@@ -169,17 +169,15 @@ public class ProjectToolbar extends Toolbar {
             return;
           }
           Project project = ode.getProjectManager().addProject(projectInfo);
-          Ode.getInstance().openYoungAndroidProjectInDesigner(project);
-          //if (onSuccessCommand != null) {
-            // onSuccessCommand.execute(project);
-          // }  
         }
+
       };
+
       String pathToZip = TEMPLATES_ROOT_DIRECTORY + projectName + "/" + projectName +
         PROJECT_ARCHIVE_EXTENSION;
       ode.getProjectService().newProjectFromTemplate(projectName, pathToZip, callback);
       NewUserGetStarted.createStarterDialog(true);
-    
+
     }
   }
 
