@@ -1295,14 +1295,9 @@ textarea::-webkit-input-placeholder {
   margin-left: 10px;
 }
 
-.ode-DialogBox-popup {
-  border-top: 10px #8fc202;;
-}
-.ode-DialogBox-popup .dialogTop{
-  background-color: #8fc202;
-}
 
-.ode-DialogBox .Caption {
+/* All get started tutorial dialog boxes */
+.ode-DialogBox-popup .dialogTop {
   background-color: #8fc202;
-  padding: 5px 10px;
+  height: 20px;
 }
