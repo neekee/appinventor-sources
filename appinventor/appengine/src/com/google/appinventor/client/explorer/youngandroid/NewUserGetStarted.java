@@ -1,18 +1,5 @@
 package com.google.appinventor.client.explorer.youngandroid;
 
-/*import static com.google.appinventor.client.Ode.MESSAGES;
-
-import com.google.appinventor.client.Ode;
-import com.google.appinventor.client.OdeAsyncCallback;
-import com.google.appinventor.client.explorer.project.Project;
-import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
-import com.google.appinventor.shared.rpc.project.UserProject;
-import com.google.appinventor.shared.rpc.project.youngandroid.NewYoungAndroidProjectParameters;
-import com.google.appinventor.shared.rpc.project.youngandroid.YoungAndroidProjectNode;
-*/
-
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
@@ -138,6 +125,8 @@ public class NewUserGetStarted {
       this.setModal(false);
       this.setAutoHideEnabled(false);
   	  this.setWidget(holder);
+      this.setStylePrimaryName("ode-DialogBox-popup");
+      this.setAnimationEnabled(true);
     }
   }
   
@@ -146,25 +135,53 @@ public class NewUserGetStarted {
   	private int browserWidth = Window.getClientWidth();
   	
   	public void setBackgroundImage(Image background) {
-  	  background.setPixelSize(this.browserWidth, 410);
+  	  background.setPixelSize(this.browserWidth, this.browserHeight);
   	  super.setBackgroundImage(background);
   	}
     
     public void ready() {
       
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
-      exitButton.setPixelSize(30, 30);
-      this.setExitButton(exitButton, this.browserWidth - 40, 240);
+      exitButton.setPixelSize(40, 40);
+      this.setExitButton(exitButton, this.browserWidth - 40, 0.8*this.browserHeight);
       
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(190, 96);
-      this.setContinueButton(continueButton, this.browserWidth - 230, 280, false);
+      this.setContinueButton(continueButton, this.browserWidth - 230, this.browserHeight - 125, false);
       
       Image backButton = new Image("images/getStarted/Components/BackButton.png");
       backButton.setPixelSize(190, 96);
       this.setBackButton(backButton, this.browserWidth - 450, this.browserHeight - 125);
       
       this.setWidget(holder);
+    }
+  }
+
+  public static class FrameTutorialSlide extends TutorialSlide {
+    private int browserHeight = Window.getClientHeight();
+    private int browserWidth = Window.getClientWidth();
+    
+    public void setBackgroundImage(Image background) {
+      background.setPixelSize(this.browserWidth-20, 410);
+      super.setBackgroundImage(background);
+    }
+    
+    public void ready() {
+      
+      Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
+      exitButton.setPixelSize(40, 40);
+      this.setExitButton(exitButton, this.browserWidth - 50, 240);
+      
+      Image continueButton = new Image("images/getStarted/Components/NextButton.png");
+      continueButton.setPixelSize(190, 96);
+      this.setContinueButton(continueButton, this.browserWidth - 240, 280, false);
+      
+      Image backButton = new Image("images/getStarted/Components/BackButton.png");
+      backButton.setPixelSize(190, 96);
+      this.setBackButton(backButton, this.browserWidth - 460, 280);
+      
+      this.setWidget(holder);
+      this.setStylePrimaryName("ode-DialogBox-getStarted");
     }
   }
   	
@@ -251,15 +268,14 @@ public class NewUserGetStarted {
   
   public static TutorialSlide beginDesignTutorial(boolean showDialog) {
     // Create the UI elements of the DialogBox
-    final TutorialSlide designSlide = new FullWindowTutorialSlide(); // DialogBox(autohide, modal)
-    designSlide.setStylePrimaryName("ode-DialogBox-getStarted");
+    final TutorialSlide designSlide = new FrameTutorialSlide(); // DialogBox(autohide, modal)
+    //designSlide.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
-    designSlide.setAnimationEnabled(true);
+    //designSlide.setAnimationEnabled(true);
     
     Image backgroundImage = new Image("images/getStarted/Screen3Frame.png");
-    backgroundImage.setPixelSize(835, 470);
     designSlide.setBackgroundImage(backgroundImage);
     
     designSlide.ready();
@@ -373,7 +389,7 @@ public class NewUserGetStarted {
 
   public static TutorialSlide beginProgramTutorial(boolean showDialog) {
     // Create the UI elements of the DialogBox
-    final TutorialSlide programSlide = new FullWindowTutorialSlide(); // DialogBox(autohide, modal)
+    final TutorialSlide programSlide = new FrameTutorialSlide(); // DialogBox(autohide, modal)
     programSlide.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
     //dialogBox.setWidth("400px");
