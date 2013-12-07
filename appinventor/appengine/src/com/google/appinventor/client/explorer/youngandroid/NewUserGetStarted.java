@@ -143,7 +143,7 @@ public class NewUserGetStarted {
       
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
-      this.setExitButton(exitButton, this.browserWidth - 40, (int) 0.8*this.browserHeight);
+      this.setExitButton(exitButton, this.browserWidth - 40, this.browserHeight);
       
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(190, 96);
@@ -170,15 +170,15 @@ public class NewUserGetStarted {
       
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
-      this.setExitButton(exitButton, this.browserWidth - 50, 240);
+      this.setExitButton(exitButton, this.browserWidth - 60, 240);
       
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(190, 96);
-      this.setContinueButton(continueButton, this.browserWidth - 240, 280, false);
+      this.setContinueButton(continueButton, this.browserWidth - 250, 280, false);
       
       Image backButton = new Image("images/getStarted/Components/BackButton.png");
       backButton.setPixelSize(190, 96);
-      this.setBackButton(backButton, this.browserWidth - 460, 280);
+      this.setBackButton(backButton, this.browserWidth - 470, 280);
       
       this.setWidget(holder);
       this.setStylePrimaryName("ode-DialogBox-getStarted");
@@ -201,6 +201,7 @@ public class NewUserGetStarted {
       this.setBackButton(backButton, 20, 595);
       
       this.setWidget(holder);
+      this.setStylePrimaryName("ode-DialogBox-popup");
     }
   }
 
@@ -338,7 +339,7 @@ public class NewUserGetStarted {
     
     designPopup.ready();
 
-    designPopup.setPopupPosition(browserWidth - 260, 0);
+    designPopup.setPopupPosition(browserWidth - 275, 0);
     
     return designPopup;
   }
@@ -381,7 +382,7 @@ public class NewUserGetStarted {
     
     designPopup.ready();
 
-    designPopup.setPopupPosition(browserWidth - 260, 0);
+    designPopup.setPopupPosition(browserWidth - 275, 0);
     
     return designPopup;
   }
@@ -463,7 +464,7 @@ public class NewUserGetStarted {
     
     programPopup.ready();
 
-    programPopup.setPopupPosition(browserWidth - 260, 0);
+    programPopup.setPopupPosition(browserWidth - 275, 0);
     
     return programPopup;
   }
@@ -510,7 +511,7 @@ public class NewUserGetStarted {
     
     programPopup.ready();
 
-    programPopup.setPopupPosition(browserWidth - 260, 0);
+    programPopup.setPopupPosition(browserWidth - 275, 0);
     
     return programPopup;
   }
@@ -561,7 +562,7 @@ public class NewUserGetStarted {
     
     programPopup.ready();
 
-    programPopup.setPopupPosition(browserWidth - 260, 0);
+    programPopup.setPopupPosition(browserWidth - 275, 0);
     
     return programPopup;
   }
