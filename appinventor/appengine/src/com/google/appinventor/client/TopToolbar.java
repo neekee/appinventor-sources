@@ -18,6 +18,7 @@ import com.google.appinventor.client.explorer.commands.ShowBarcodeCommand;
 import com.google.appinventor.client.explorer.commands.ShowProgressBarCommand;
 import com.google.appinventor.client.explorer.commands.WaitForBuildResultCommand;
 import com.google.appinventor.client.explorer.project.Project;
+import com.google.appinventor.client.explorer.youngandroid.ProjectToolbar;
 import com.google.appinventor.client.output.OdeLog;
 import com.google.appinventor.client.tracking.Tracking;
 import com.google.appinventor.client.utils.Downloader;
@@ -92,6 +93,7 @@ public class TopToolbar extends Composite {
   private static final String WIDGET_NAME_LIBRARY = "Library";
   private static final String WIDGET_NAME_GETSTARTED = "GetStarted";
   private static final String WIDGET_NAME_TUTORIALS = "Tutorials";
+  private static final String WIDGET_NAME_WALKTHROUGH = "Walkthrough";
   private static final String WIDGET_NAME_TROUBLESHOOTING = "Troubleshooting";
   private static final String WIDGET_NAME_FORUMS = "Forums";
   private static final String WIDGET_NAME_FEEDBACK = "ReportIssue";
@@ -186,6 +188,8 @@ public class TopToolbar extends Composite {
         new GetStartedAction()));
     helpItems.add(new DropDownItem(WIDGET_NAME_TUTORIALS, MESSAGES.tutorialsLink(),
         new TutorialsAction()));
+    helpItems.add(new DropDownItem(WIDGET_NAME_WALKTHROUGH, MESSAGES.walkthroughLink(),
+        new WalkthroughAction()));
     helpItems.add(new DropDownItem(WIDGET_NAME_TROUBLESHOOTING, MESSAGES.troubleshootingLink(),
         new TroubleShootingAction()));
     helpItems.add(new DropDownItem(WIDGET_NAME_FORUMS, MESSAGES.forumsLink(),
@@ -629,6 +633,13 @@ public class TopToolbar extends Composite {
     @Override
     public void execute() {
       Window.open("http://dev-explore.appinventor.mit.edu/ai2/tutorials", "_ai2", "");
+    }
+  }
+  
+  private static class WalkthroughAction implements Command {
+    @Override
+    public void execute() {
+      ProjectToolbar.getStarted();
     }
   }
 
