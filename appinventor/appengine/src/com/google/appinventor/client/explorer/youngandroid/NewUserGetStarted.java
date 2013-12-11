@@ -192,22 +192,22 @@ public class NewUserGetStarted {
   public static class PopupTutorialSlide extends TutorialSlide {
     private ToggleButton hintButton;
 
-    public DialogBox createHint(Image hintImage) {
+    public DialogBox createHint(Image hintImage, int width, int height, int left, int top) {
       DialogBox hint = new DialogBox();
       hint.setStylePrimaryName("ode-DialogBox-getStarted");
       AbsolutePanel hintHolder = new AbsolutePanel();
-      hintImage.setPixelSize(400, 250);
+      hintImage.setPixelSize(width, height);
       hintHolder.add(hintImage);
       hint.setGlassEnabled(false);
       hint.setModal(false);
       hint.setAutoHideEnabled(false);
       hint.setWidget(hintHolder);
       hint.setAnimationEnabled(true);
-      hint.setPopupPosition(100, 100);
+      hint.setPopupPosition(left, top);
       return hint;
     }
 
-    public void addHintButton(Image hintImage, int x, int y) {
+    public void addHintButton(Image hintImage, int width, int height, int left, int top) {
       Image showHint = new Image("images/getStarted/Components/ShowHintButton.png");
       showHint.setPixelSize(90, 30);
       Image hideHint = new Image("images/getStarted/Components/HideHintButton.png");
@@ -216,7 +216,7 @@ public class NewUserGetStarted {
       final ToggleButton hintButton = new ToggleButton(showHint, hideHint);
       hintButton.setStylePrimaryName("toggle-button");
 
-      final DialogBox hint = createHint(hintImage);
+      final DialogBox hint = createHint(hintImage, width, height, left, top);
       
       hintButton.addClickHandler(new ClickHandler() {
         public void onClick(ClickEvent event) {
@@ -231,7 +231,7 @@ public class NewUserGetStarted {
 
       this.hintButton = hintButton;
       this.holder.add(this.hintButton);
-      this.holder.setWidgetPosition(this.hintButton, x, y);
+      this.holder.setWidgetPosition(this.hintButton, 35, 520);
     }
 
     public void ready() {
@@ -386,7 +386,7 @@ public class NewUserGetStarted {
     designPopup.addImage(checkBox, 200, 110);
 
     Image hintImage = new Image("images/getStarted/Components/1DesignerStep1Hint.png");
-    designPopup.addHintButton(hintImage, 35, 520);
+    designPopup.addHintButton(hintImage, 400, 250, 100, 320);
 
     designPopup.ready();
 
@@ -514,7 +514,7 @@ public class NewUserGetStarted {
     programPopup.addImage(checkBox2, 200, 250);
 
     Image hintImage = new Image("images/getStarted/Components/1ProgramStep1Hint.png");
-    programPopup.addHintButton(hintImage, 35, 520);
+    programPopup.addHintButton(hintImage, 350, 150, 100, 300);
     
     programPopup.ready();
 
@@ -564,7 +564,7 @@ public class NewUserGetStarted {
     programPopup.addImage(checkBox2, 200, 250);
 
     Image hintImage = new Image("images/getStarted/Components/1ProgramStep2Hint.png");
-    programPopup.addHintButton(hintImage, 35, 520);
+    programPopup.addHintButton(hintImage, 325, 135, 100, 200);
     
     programPopup.ready();
 
