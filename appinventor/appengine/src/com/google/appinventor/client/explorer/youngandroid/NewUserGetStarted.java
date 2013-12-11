@@ -177,6 +177,7 @@ public class NewUserGetStarted {
     }
 
     public void ready() {
+      super.ready();
 
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
@@ -260,6 +261,7 @@ public class NewUserGetStarted {
     }
 
     public void ready() {
+      super.ready();
 
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(30, 30);
@@ -539,7 +541,7 @@ public class NewUserGetStarted {
     programPopup.addImage(checkBox2, 200, 250);
 
     Image hintImage = new Image("images/getStarted/Components/1ProgramStep1Hint.png");
-    programPopup.addHintButton(hintImage, 350, 150, 100, 300);
+    programPopup.addHintButton(hintImage, 350, 150, 200, 400);
 
     programPopup.ready();
 
@@ -589,7 +591,7 @@ public class NewUserGetStarted {
     programPopup.addImage(checkBox2, 200, 250);
 
     Image hintImage = new Image("images/getStarted/Components/1ProgramStep2Hint.png");
-    programPopup.addHintButton(hintImage, 325, 135, 100, 200);
+    programPopup.addHintButton(hintImage, 325, 135, 200, 250);
 
     programPopup.ready();
 
