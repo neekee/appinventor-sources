@@ -801,6 +801,11 @@ public class NewUserGetStarted {
 
     Image moreButton = new Image("images/getStarted/Screen22TutorialsButton.png");
     moreButton.setPixelSize(225, 126);
+    moreButton.addClickListener(new ClickListener() {
+      public void onClick(Widget sender) {
+        Window.open("http://dev-explore.appinventor.mit.edu/ai2/tutorials", "_ai2", "");
+      }
+    });
     lastSlide.setBackButton(moreButton, 450, 160);
 
     lastSlide.ready();
