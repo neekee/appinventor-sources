@@ -199,12 +199,15 @@ public class NewUserGetStarted {
 
   public static class PopupTutorialSlide extends TutorialSlide {
     private ToggleButton hintButton;
+    private Image hintImage;
+    private DialogBox hintPopup;
+    private Image continueButton;
 
-    public DialogBox createHint(Image hintImage, int width, int height, int left, int top) {
+    public DialogBox createHint(int width, int height, int left, int top) {
       DialogBox hint = new DialogBox();
       hint.setStylePrimaryName("ode-DialogBox-getStarted");
       AbsolutePanel hintHolder = new AbsolutePanel();
-      hintImage.setPixelSize(width, height);
+      this.hintImage.setPixelSize(width, height);
       hintHolder.add(hintImage);
       hint.setGlassEnabled(false);
       hint.setModal(false);
@@ -224,7 +227,9 @@ public class NewUserGetStarted {
       final ToggleButton hintButton = new ToggleButton(showHint, hideHint);
       hintButton.setStylePrimaryName("toggle-button");
 
-      final DialogBox hint = createHint(hintImage, width, height, left, top);
+      this.hintImage = hintImage;
+      final DialogBox hint = createHint(width, height, left, top);
+      hintPopup = hint;
 
       hintButton.addClickHandler(new ClickHandler() {
         public void onClick(ClickEvent event) {
@@ -242,6 +247,18 @@ public class NewUserGetStarted {
       this.holder.setWidgetPosition(this.hintButton, 35, 520);
     }
 
+    public void setContinueButton(Image button, int x, int y) {
+      this.continueButton = button;
+      holder.add(this.continueButton);
+      this.continueButton.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+            tutorial.nextSlide();
+            hintPopup.hide();
+        }
+      });
+      holder.setWidgetPosition(this.continueButton, x, y);
+    }
+
     public void ready() {
     
       super.ready();
@@ -252,7 +269,7 @@ public class NewUserGetStarted {
 
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(80, 40);
-      this.setContinueButton(continueButton, 150, 595, false);
+      setContinueButton(continueButton, 150, 595);
 
       Image backButton = new Image("images/getStarted/Components/BackButton.png");
       backButton.setPixelSize(80, 40);
