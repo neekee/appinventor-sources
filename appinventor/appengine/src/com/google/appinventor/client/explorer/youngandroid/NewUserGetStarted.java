@@ -17,6 +17,8 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import com.google.appinventor.client.Ode;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -40,6 +42,9 @@ public class NewUserGetStarted {
 	  if (currentMessageIndex < this.slides.size() - 1) {
 		slides.get(currentMessageIndex).hide();
 		currentMessageIndex += 1;
+		if (currentMessageIndex == 5) {
+		  Ode.getInstance().getDesignToolbar().switchToBlocksEditor();
+		}
 		slides.get(currentMessageIndex).show();
 	  }
 	}
@@ -48,6 +53,9 @@ public class NewUserGetStarted {
 	  if (currentMessageIndex > 0) {
 		slides.get(currentMessageIndex).hide();
 		currentMessageIndex -= 1;
+		if (currentMessageIndex == 4) {
+		  Ode.getInstance().getDesignToolbar().switchToFormEditor();
+		}
 		slides.get(currentMessageIndex).show();
 	  }
 	}
@@ -441,6 +449,7 @@ public class NewUserGetStarted {
 
   public static TutorialSlide beginProgramTutorial(boolean showDialog) {
     // Create the UI elements of the DialogBox
+    
     final TutorialSlide programSlide = new FrameTutorialSlide(); // DialogBox(autohide, modal)
     programSlide.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
@@ -476,7 +485,6 @@ public class NewUserGetStarted {
     return programSlide;
   }  
 
-  //TODO: I actually should probably define a TutorialSlide subclass for popups.
   public static PopupTutorialSlide beginProgramPopup(boolean showDialog) {
     // Create the UI elements of the DialogBox
     final PopupTutorialSlide programPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)

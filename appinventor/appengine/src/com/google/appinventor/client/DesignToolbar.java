@@ -270,6 +270,10 @@ public class DesignToolbar extends Toolbar {
       }
     }
   }
+  
+  public void switchToBlocksEditor() {
+    new SwitchToBlocksEditorAction().execute();
+  }
 
   private class SwitchToFormEditorAction implements Command {
     @Override
@@ -286,6 +290,10 @@ public class DesignToolbar extends Toolbar {
         Ode.getInstance().getTopToolbar().updateFileMenuButtons(1);
       }
     }
+  }
+  
+  public void switchToFormEditor() {
+    new SwitchToFormEditorAction().execute();
   }
 
   public void addProject(long projectId, String projectName) {
