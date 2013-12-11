@@ -1,7 +1,10 @@
 package com.google.appinventor.client.explorer.youngandroid;
 
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.CustomButton;
@@ -9,6 +12,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -186,6 +190,50 @@ public class NewUserGetStarted {
   }
   	
   public static class PopupTutorialSlide extends TutorialSlide {
+    private ToggleButton hintButton;
+
+    public DialogBox createHint(Image hintImage) {
+      DialogBox hint = new DialogBox();
+      hint.setStylePrimaryName("ode-DialogBox-getStarted");
+      AbsolutePanel hintHolder = new AbsolutePanel();
+      hintImage.setPixelSize(400, 250);
+      hintHolder.add(hintImage);
+      hint.setGlassEnabled(false);
+      hint.setModal(false);
+      hint.setAutoHideEnabled(false);
+      hint.setWidget(hintHolder);
+      hint.setAnimationEnabled(true);
+      hint.setPopupPosition(100, 100);
+      return hint;
+    }
+
+    public void addHintButton(Image hintImage, int x, int y) {
+      Image showHint = new Image("images/getStarted/Components/ShowHintButton.png");
+      showHint.setPixelSize(90, 30);
+      Image hideHint = new Image("images/getStarted/Components/HideHintButton.png");
+      hideHint.setPixelSize(90, 30);
+      
+      final ToggleButton hintButton = new ToggleButton(showHint, hideHint);
+      hintButton.setStylePrimaryName("toggle-button");
+
+      final DialogBox hint = createHint(hintImage);
+      
+      hintButton.addClickHandler(new ClickHandler() {
+        public void onClick(ClickEvent event) {
+          if (hintButton.isDown()) {
+            hint.show();
+          } else {
+            hint.hide();
+          }
+
+        }
+      });
+
+      this.hintButton = hintButton;
+      this.holder.add(this.hintButton);
+      this.holder.setWidgetPosition(this.hintButton, x, y);
+    }
+
     public void ready() {
     
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
@@ -305,9 +353,9 @@ public class NewUserGetStarted {
 
 
   //TODO: I actually should probably define a TutorialSlide subclass for popups.
-  public static TutorialSlide beginDesignPopup(boolean showDialog) {
+  public static PopupTutorialSlide beginDesignPopup(boolean showDialog) {
     // Create the UI elements of the DialogBox
-    final TutorialSlide designPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)
+    final PopupTutorialSlide designPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)
     designPopup.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
     //dialogBox.setWidth("400px");
@@ -336,7 +384,10 @@ public class NewUserGetStarted {
     Image checkBox = new Image("images/getStarted/Components/0SideMenuCheckBox.png");
     checkBox.setPixelSize(40, 40);
     designPopup.addImage(checkBox, 200, 110);
-    
+
+    Image hintImage = new Image("images/getStarted/Components/1DesignerStep1Hint.png");
+    designPopup.addHintButton(hintImage, 35, 520);
+
     designPopup.ready();
 
     designPopup.setPopupPosition(browserWidth - 275, 0);
@@ -426,9 +477,9 @@ public class NewUserGetStarted {
   }  
 
   //TODO: I actually should probably define a TutorialSlide subclass for popups.
-  public static TutorialSlide beginProgramPopup(boolean showDialog) {
+  public static PopupTutorialSlide beginProgramPopup(boolean showDialog) {
     // Create the UI elements of the DialogBox
-    final TutorialSlide programPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)
+    final PopupTutorialSlide programPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)
     programPopup.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
     //dialogBox.setWidth("400px");
@@ -461,6 +512,9 @@ public class NewUserGetStarted {
     Image checkBox2 = new Image("images/getStarted/Components/0SideMenuCheckBox.png");
     checkBox2.setPixelSize(40, 40);
     programPopup.addImage(checkBox2, 200, 250);
+
+    Image hintImage = new Image("images/getStarted/Components/1ProgramStep1Hint.png");
+    programPopup.addHintButton(hintImage, 35, 520);
     
     programPopup.ready();
 
@@ -469,9 +523,9 @@ public class NewUserGetStarted {
     return programPopup;
   }
 
-   public static TutorialSlide beginProgramPopup2(boolean showDialog) {
+   public static PopupTutorialSlide beginProgramPopup2(boolean showDialog) {
     // Create the UI elements of the DialogBox
-    final TutorialSlide programPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)
+    final PopupTutorialSlide programPopup = new PopupTutorialSlide(); // DialogBox(autohide, modal)
     programPopup.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
     //dialogBox.setWidth("400px");
@@ -508,6 +562,9 @@ public class NewUserGetStarted {
     Image checkBox2 = new Image("images/getStarted/Components/0SideMenuCheckBox.png");
     checkBox2.setPixelSize(40, 40);
     programPopup.addImage(checkBox2, 200, 250);
+
+    Image hintImage = new Image("images/getStarted/Components/1ProgramStep2Hint.png");
+    programPopup.addHintButton(hintImage, 35, 520);
     
     programPopup.ready();
 
