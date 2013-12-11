@@ -677,6 +677,9 @@ public class NewUserGetStarted {
     backButton.setPixelSize(190, 96);
     testSlide.setBackButton(backButton, 400, 370);
 
+    int browserWidth=Window.getClientWidth();
+    testSlide.setPopupPosition(browserWidth - 850, 0);
+
     testSlide.ready();
 
     return testSlide;
@@ -706,6 +709,9 @@ public class NewUserGetStarted {
     Image backButton = new Image("images/getStarted/Components/BackButton.png");
     backButton.setPixelSize(190, 96);
     testSlide.setBackButton(backButton, 400, 370);
+
+    int browserWidth=Window.getClientWidth();
+    testSlide.setPopupPosition(browserWidth - 860, 0);
 
     testSlide.ready();
 
@@ -737,6 +743,9 @@ public class NewUserGetStarted {
     backButton.setPixelSize(190, 96);
     testSlide.setBackButton(backButton, 400, 370);
 
+    int browserWidth=Window.getClientWidth();
+    testSlide.setPopupPosition(browserWidth - 860, 0);
+
     testSlide.ready();
 
     return testSlide;
@@ -766,6 +775,9 @@ public class NewUserGetStarted {
     Image backButton = new Image("images/getStarted/Components/BackButton.png");
     backButton.setPixelSize(190, 96);
     testSlide.setBackButton(backButton, 400, 370);
+
+    int browserWidth=Window.getClientWidth();
+    testSlide.setPopupPosition(browserWidth - 860, 0);
 
     testSlide.ready();
 
@@ -797,6 +809,9 @@ public class NewUserGetStarted {
     backButton.setPixelSize(190, 96);
     testSlide.setBackButton(backButton, 400, 370);
 
+    int browserWidth=Window.getClientWidth();
+    testSlide.setPopupPosition(browserWidth - 860, 0);
+
     testSlide.ready();
 
     return testSlide;
@@ -827,6 +842,9 @@ public class NewUserGetStarted {
     backButton.setPixelSize(190, 96);
     shareSlide.setBackButton(backButton, 400, 370);
 
+    int browserWidth=Window.getClientWidth();
+    shareSlide.setPopupPosition(browserWidth - 860, 0);
+
     shareSlide.ready();
 
     return shareSlide;
@@ -856,6 +874,9 @@ public class NewUserGetStarted {
     Image backButton = new Image("images/getStarted/Components/BackButton.png");
     backButton.setPixelSize(190, 96);
     shareSlide.setBackButton(backButton, 400, 370);
+
+    int browserWidth=Window.getClientWidth();
+    shareSlide.setPopupPosition(browserWidth - 860, 0);
 
     shareSlide.ready();
 
@@ -891,6 +912,9 @@ public class NewUserGetStarted {
       }
     });
     lastSlide.setBackButton(moreButton, 450, 160);
+
+    int browserWidth=Window.getClientWidth();
+    lastSlide.setPopupPosition(browserWidth - 860, 0);
 
     lastSlide.ready();
 
