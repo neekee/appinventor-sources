@@ -24,20 +24,18 @@ import java.util.ArrayList;
 
 
 public class NewUserGetStarted {
-	
+
   public static class Tutorial {
 	ArrayList<TutorialSlide> slides = new ArrayList<TutorialSlide>();
 	int currentMessageIndex = 0;
-		  
-	public Tutorial() {
-			  
-	}
-		  
+
+	public Tutorial() {}
+
 	public void addSlide(TutorialSlide slide) {
 	  slides.add(slide);
 	  slide.setTutorial(this);
 	}
-		  
+
 	public void nextSlide() {
 	  if (currentMessageIndex < this.slides.size() - 1) {
 		slides.get(currentMessageIndex).hide();
@@ -48,7 +46,7 @@ public class NewUserGetStarted {
 		slides.get(currentMessageIndex).show();
 	  }
 	}
-		  
+
 	public void lastSlide() {
 	  if (currentMessageIndex > 0) {
 		slides.get(currentMessageIndex).hide();
@@ -59,11 +57,11 @@ public class NewUserGetStarted {
 		slides.get(currentMessageIndex).show();
 	  }
 	}
-		
+
 	public void exit() {
 	  slides.get(currentMessageIndex).hide();
 	}
-		  
+
   }
 
   public static class TutorialSlide extends DialogBox {
@@ -74,16 +72,16 @@ public class NewUserGetStarted {
   	private Image exitButton;
   	AbsolutePanel holder = new AbsolutePanel();
   	Tutorial tutorial;
-  	
+
   	public void setTutorial(Tutorial t) {
   	  tutorial = t;
   	}
-  	  
+
   	public void setBackgroundImage(Image background) {
   	  this.background = background;
   	  this.holder.add(this.background);
   	}
-  	  
+
   	public void setContinueButton(Image button, int x, int y, boolean last) {
   	  this.continueButton = button;
   	  holder.add(this.continueButton);
@@ -103,7 +101,7 @@ public class NewUserGetStarted {
   	  //TODO: do i need this?
   	  holder.setWidgetPosition(this.continueButton, x, y);
   	}
- 
+
   	public void setBackButton(Image button, int x, int y) {
   	  this.backButton = button;
   	  holder.add(this.backButton);
@@ -125,13 +123,13 @@ public class NewUserGetStarted {
   	  });
   	  holder.setWidgetPosition(this.exitButton, x, y);
   	}
-  	
+
   	public void addImage(Image newImage, int x, int y) {
   	  this.images.add(newImage);
   	  this.holder.add(newImage);
   	  holder.setWidgetPosition(newImage, x, y);
   	}
-  	
+
   	public void ready() {
       this.setGlassEnabled(false);
       this.setModal(false);
@@ -141,30 +139,30 @@ public class NewUserGetStarted {
       this.setAnimationEnabled(true);
     }
   }
-  
+
   public static class FullWindowTutorialSlide extends TutorialSlide {
   	private int browserHeight = Window.getClientHeight();
   	private int browserWidth = Window.getClientWidth();
-  	
+
   	public void setBackgroundImage(Image background) {
   	  background.setPixelSize(this.browserWidth, this.browserHeight);
   	  super.setBackgroundImage(background);
   	}
-    
+
     public void ready() {
-      
+
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
       this.setExitButton(exitButton, this.browserWidth - 40, this.browserHeight);
-      
+
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(190, 96);
       this.setContinueButton(continueButton, this.browserWidth - 230, this.browserHeight - 125, false);
-      
+
       Image backButton = new Image("images/getStarted/Components/BackButton.png");
       backButton.setPixelSize(190, 96);
       this.setBackButton(backButton, this.browserWidth - 450, this.browserHeight - 125);
-      
+
       this.setWidget(holder);
     }
   }
@@ -172,31 +170,31 @@ public class NewUserGetStarted {
   public static class FrameTutorialSlide extends TutorialSlide {
     private int browserHeight = Window.getClientHeight();
     private int browserWidth = Window.getClientWidth();
-    
+
     public void setBackgroundImage(Image background) {
       background.setPixelSize(this.browserWidth-20, 410);
       super.setBackgroundImage(background);
     }
-    
+
     public void ready() {
-      
+
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
       this.setExitButton(exitButton, this.browserWidth - 60, 240);
-      
+
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(190, 96);
       this.setContinueButton(continueButton, this.browserWidth - 250, 280, false);
-      
+
       Image backButton = new Image("images/getStarted/Components/BackButton.png");
       backButton.setPixelSize(190, 96);
       this.setBackButton(backButton, this.browserWidth - 470, 280);
-      
+
       this.setWidget(holder);
       this.setStylePrimaryName("ode-DialogBox-getStarted");
     }
   }
-  	
+
   public static class PopupTutorialSlide extends TutorialSlide {
     private ToggleButton hintButton;
 
@@ -220,12 +218,12 @@ public class NewUserGetStarted {
       showHint.setPixelSize(90, 30);
       Image hideHint = new Image("images/getStarted/Components/HideHintButton.png");
       hideHint.setPixelSize(90, 30);
-      
+
       final ToggleButton hintButton = new ToggleButton(showHint, hideHint);
       hintButton.setStylePrimaryName("toggle-button");
 
       final DialogBox hint = createHint(hintImage, width, height, left, top);
-      
+
       hintButton.addClickHandler(new ClickHandler() {
         public void onClick(ClickEvent event) {
           if (hintButton.isDown()) {
@@ -243,19 +241,19 @@ public class NewUserGetStarted {
     }
 
     public void ready() {
-    
+
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(30, 30);
       this.setExitButton(exitButton, 220, 0);
-      
+
       Image continueButton = new Image("images/getStarted/Components/NextButton.png");
       continueButton.setPixelSize(80, 40);
       this.setContinueButton(continueButton, 150, 595, false);
-      
+
       Image backButton = new Image("images/getStarted/Components/BackButton.png");
       backButton.setPixelSize(80, 40);
       this.setBackButton(backButton, 20, 595);
-      
+
       this.setWidget(holder);
       this.setStylePrimaryName("ode-DialogBox-popup");
     }
@@ -284,25 +282,25 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen2Popup.png");
     backgroundImage.setPixelSize(835, 470);
     firstSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     firstSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     firstSlide.setContinueButton(continueButton, 625, 370, false);
-    
+
     firstSlide.ready();
     tutorial.addSlide(firstSlide);
-    
+
     addDesignTutorialSlides(tutorial);
-    
-    
+
+
     firstSlide.show();
     return tutorial;
   }
-  
+
   public static void addDesignTutorialSlides(Tutorial tutorial) {
     tutorial.addSlide(beginDesignTutorial(true));
     tutorial.addSlide(continueDesignTutorial(true));
@@ -322,7 +320,7 @@ public class NewUserGetStarted {
     tutorial.addSlide(shareSlide1(true));
     tutorial.addSlide(lastSlide(true));
   }
-  
+
   public static TutorialSlide beginDesignTutorial(boolean showDialog) {
     // Create the UI elements of the DialogBox
     final TutorialSlide designSlide = new FrameTutorialSlide(); // DialogBox(autohide, modal)
@@ -331,10 +329,10 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     //designSlide.setAnimationEnabled(true);
-    
+
     Image backgroundImage = new Image("images/getStarted/Screen3Frame.png");
     designSlide.setBackgroundImage(backgroundImage);
-    
+
     designSlide.ready();
     //TODO: ask about this; what does it do and should we have it in all slides?
     designSlide.setPopupPosition(0, Window.getClientHeight() - 410);
@@ -350,12 +348,12 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     designSlide.setAnimationEnabled(true);
-    
+
     Image backgroundImage = new Image("images/getStarted/Screen4Overlay.png");
     designSlide.setBackgroundImage(backgroundImage);
-    
+
     designSlide.ready();
-    
+
     return designSlide;
   }
 
@@ -369,10 +367,10 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     designPopup.setAnimationEnabled(true);
-    
+
     int browserWidth=Window.getClientWidth();
     int browserHeight=Window.getClientHeight();
-    
+
     Image backgroundImage = new Image("images/getStarted/Components/0BlankSideMenu.png");
     backgroundImage.setPixelSize(250, 650);
     designPopup.setBackgroundImage(backgroundImage);
@@ -399,7 +397,7 @@ public class NewUserGetStarted {
     designPopup.ready();
 
     designPopup.setPopupPosition(browserWidth - 275, 0);
-    
+
     return designPopup;
   }
 
@@ -411,10 +409,10 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     designPopup.setAnimationEnabled(true);
-    
+
     int browserWidth=Window.getClientWidth();
     int browserHeight=Window.getClientHeight();
-    
+
     Image backgroundImage = new Image("images/getStarted/Components/0BlankSideMenu.png");
     backgroundImage.setPixelSize(250, 650);
     designPopup.setBackgroundImage(backgroundImage);
@@ -438,28 +436,28 @@ public class NewUserGetStarted {
     Image check = new Image("images/getStarted/Components/0SideMenuCheck.png");
     check.setPixelSize(50, 43);
     designPopup.addImage(check, 195, 105);
-    
+
     designPopup.ready();
 
     designPopup.setPopupPosition(browserWidth - 275, 0);
-    
+
     return designPopup;
   }
 
 
   public static TutorialSlide beginProgramTutorial(boolean showDialog) {
     // Create the UI elements of the DialogBox
-    
+
     final TutorialSlide programSlide = new FrameTutorialSlide(); // DialogBox(autohide, modal)
     programSlide.setStylePrimaryName("ode-DialogBox-getStarted");
     //dialogBox.setHeight("400px");
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     programSlide.setAnimationEnabled(true);
-    
+
     Image backgroundImage = new Image("images/getStarted/Screen8Frame.png");
     programSlide.setBackgroundImage(backgroundImage);
-    
+
     programSlide.ready();
 
     programSlide.setPopupPosition(0, Window.getClientHeight() - 410);
@@ -467,7 +465,7 @@ public class NewUserGetStarted {
     return programSlide;
   }
 
-  
+
   public static TutorialSlide programOverlay(boolean showDialog) {
     // Create the UI elements of the DialogBox
     final TutorialSlide programSlide = new FullWindowTutorialSlide(); // DialogBox(autohide, modal)
@@ -476,12 +474,12 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     programSlide.setAnimationEnabled(true);
-    
+
     Image backgroundImage = new Image("images/getStarted/Screen9Overlay.png");
     programSlide.setBackgroundImage(backgroundImage);
-    
+
     programSlide.ready();
-    
+
     return programSlide;
   }  
 
@@ -493,10 +491,10 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     programPopup.setAnimationEnabled(true);
-    
+
     int browserWidth=Window.getClientWidth();
     int browserHeight=Window.getClientHeight();
-    
+
     Image backgroundImage = new Image("images/getStarted/Components/0BlankSideMenu.png");
     backgroundImage.setPixelSize(250, 650);
     programPopup.setBackgroundImage(backgroundImage);
@@ -523,11 +521,11 @@ public class NewUserGetStarted {
 
     Image hintImage = new Image("images/getStarted/Components/1ProgramStep1Hint.png");
     programPopup.addHintButton(hintImage, 350, 150, 100, 300);
-    
+
     programPopup.ready();
 
     programPopup.setPopupPosition(browserWidth - 275, 0);
-    
+
     return programPopup;
   }
 
@@ -539,10 +537,10 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     programPopup.setAnimationEnabled(true);
-    
+
     int browserWidth=Window.getClientWidth();
     int browserHeight=Window.getClientHeight();
-    
+
     Image backgroundImage = new Image("images/getStarted/Components/0BlankSideMenu.png");
     backgroundImage.setPixelSize(250, 650);
     programPopup.setBackgroundImage(backgroundImage);
@@ -573,11 +571,11 @@ public class NewUserGetStarted {
 
     Image hintImage = new Image("images/getStarted/Components/1ProgramStep2Hint.png");
     programPopup.addHintButton(hintImage, 325, 135, 100, 200);
-    
+
     programPopup.ready();
 
     programPopup.setPopupPosition(browserWidth - 275, 0);
-    
+
     return programPopup;
   }
 
@@ -589,14 +587,14 @@ public class NewUserGetStarted {
     //dialogBox.setWidth("400px");
     //dialogBox.setGlassEnabled(true);  // was true
     programPopup.setAnimationEnabled(true);
-    
+
     int browserWidth=Window.getClientWidth();
     int browserHeight=Window.getClientHeight();
-    
+
     Image backgroundImage = new Image("images/getStarted/Components/0BlankSideMenu.png");
     backgroundImage.setPixelSize(250, 650);
     programPopup.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     programPopup.setExitButton(exitButton, 220, 0);
@@ -624,11 +622,11 @@ public class NewUserGetStarted {
     Image check2 = new Image("images/getStarted/Components/0SideMenuCheck.png");
     check2.setPixelSize(50, 43);
     programPopup.addImage(check2, 195, 245);
-    
+
     programPopup.ready();
 
     programPopup.setPopupPosition(browserWidth - 275, 0);
-    
+
     return programPopup;
   }
 
@@ -645,11 +643,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen14Popup.png");
     backgroundImage.setPixelSize(835, 470);
     testSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     testSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     testSlide.setContinueButton(continueButton, 625, 370, false);
@@ -675,11 +673,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen15Popup.png");
     backgroundImage.setPixelSize(835, 470);
     testSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     testSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     testSlide.setContinueButton(continueButton, 625, 370, false);
@@ -705,11 +703,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen16Popup.png");
     backgroundImage.setPixelSize(835, 470);
     testSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     testSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     testSlide.setContinueButton(continueButton, 625, 370, false);
@@ -735,11 +733,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen17Popup.png");
     backgroundImage.setPixelSize(835, 470);
     testSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     testSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     testSlide.setContinueButton(continueButton, 625, 370, false);
@@ -765,11 +763,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen18Popup.png");
     backgroundImage.setPixelSize(835, 470);
     testSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     testSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     testSlide.setContinueButton(continueButton, 625, 370, false);
@@ -795,11 +793,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen19Popup.png");
     backgroundImage.setPixelSize(835, 470);
     shareSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     shareSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     shareSlide.setContinueButton(continueButton, 625, 370, false);
@@ -825,11 +823,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen20Popup.png");
     backgroundImage.setPixelSize(835, 470);
     shareSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     shareSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image continueButton = new Image("images/getStarted/Components/NextButton.png");
     continueButton.setPixelSize(190, 96);
     shareSlide.setContinueButton(continueButton, 625, 370, false);
@@ -855,11 +853,11 @@ public class NewUserGetStarted {
     Image backgroundImage = new Image("images/getStarted/Screen22Popup.png");
     backgroundImage.setPixelSize(835, 470);
     lastSlide.setBackgroundImage(backgroundImage);
-    
+
     Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
     exitButton.setPixelSize(30, 30);
     lastSlide.setExitButton(exitButton, 805, 0);
-    
+
     Image startButton = new Image("images/getStarted/Screen22NewProjectButton.png");
     startButton.setPixelSize(225, 126);
     lastSlide.setContinueButton(startButton, 160, 160, true);
@@ -877,5 +875,5 @@ public class NewUserGetStarted {
 
     return lastSlide;
   }
-    
+
 }
