@@ -150,6 +150,8 @@ public class NewUserGetStarted {
   	}
 
     public void ready() {
+    
+      super.ready();
 
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
@@ -163,7 +165,6 @@ public class NewUserGetStarted {
       backButton.setPixelSize(190, 96);
       this.setBackButton(backButton, this.browserWidth - 450, this.browserHeight - 125);
 
-      this.setWidget(holder);
     }
   }
 
@@ -177,6 +178,8 @@ public class NewUserGetStarted {
     }
 
     public void ready() {
+    
+      super.ready();
 
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(40, 40);
@@ -190,7 +193,6 @@ public class NewUserGetStarted {
       backButton.setPixelSize(190, 96);
       this.setBackButton(backButton, this.browserWidth - 470, 280);
 
-      this.setWidget(holder);
       this.setStylePrimaryName("ode-DialogBox-getStarted");
     }
   }
@@ -241,6 +243,8 @@ public class NewUserGetStarted {
     }
 
     public void ready() {
+    
+      super.ready();
 
       Image exitButton = new Image("images/getStarted/Components/0RedCloseButton.png");
       exitButton.setPixelSize(30, 30);
@@ -254,7 +258,6 @@ public class NewUserGetStarted {
       backButton.setPixelSize(80, 40);
       this.setBackButton(backButton, 20, 595);
 
-      this.setWidget(holder);
       this.setStylePrimaryName("ode-DialogBox-popup");
     }
   }
