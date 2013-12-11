@@ -678,7 +678,7 @@ public class NewUserGetStarted {
     testSlide.setBackButton(backButton, 400, 370);
 
     int browserWidth=Window.getClientWidth();
-    testSlide.setPopupPosition(browserWidth - 850, 0);
+    testSlide.setPopupPosition(browserWidth - 860, 0);
 
     testSlide.ready();
 
@@ -909,9 +909,10 @@ public class NewUserGetStarted {
     moreButton.addClickListener(new ClickListener() {
       public void onClick(Widget sender) {
         Window.open("http://dev-explore.appinventor.mit.edu/ai2/tutorials", "_ai2", "");
+        lastSlide.hide();
       }
     });
-    lastSlide.setBackButton(moreButton, 450, 160);
+    lastSlide.addImage(moreButton, 450, 160);
 
     int browserWidth=Window.getClientWidth();
     lastSlide.setPopupPosition(browserWidth - 860, 0);
